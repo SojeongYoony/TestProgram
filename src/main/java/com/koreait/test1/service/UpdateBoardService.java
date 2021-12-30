@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.koreait.test1.dao.BoardDAO;
+import com.koreait.test1.dto.Board;
 
 public class UpdateBoardService implements BoardService {
 
@@ -25,8 +26,14 @@ public class UpdateBoardService implements BoardService {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		
+		Board board = new Board();
+		board.setIdx(idx);
+		board.setTitle(title);
+		board.setContent(content);
+		
+		
 		BoardDAO boardDAO = sqlSession.getMapper(BoardDAO.class);
-		int result = boardDAO.updateBoard(title, content, idx);
+		int result = boardDAO.updateBoard(board);
 		
 		try {
 			response.setContentType("text/html; charset=UTF-8");
