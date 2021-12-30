@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.koreait.test1.service.DeleteBoardService;
 import com.koreait.test1.service.InsertBoardService;
@@ -47,7 +48,7 @@ public class BoardController {
 		return "board/insert";
 	}
 
-	@GetMapping(value = "insert.do")
+	@PostMapping(value = "insert.do")
 	public void insert(HttpServletRequest request, HttpServletResponse response, Model model) {
 		model.addAttribute("request", request);
 		model.addAttribute("response", response);
