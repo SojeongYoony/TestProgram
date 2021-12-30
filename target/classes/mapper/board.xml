@@ -11,19 +11,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       ORDER BY IDX DESC
 	</select>
 	
-	<insert id="insertBoard">
+	<insert id="insertBoard" parameterType="String">
 		INSERT INTO 
 		 BOARD (IDX, WRITER, TITLE, CONTENT, CREATED)
 		VALUES (BOARD_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, SYSDATE)
 	</insert>
 
-	<select id="selectByIdx" resultType="com.koreait.test1.dto.Board">
+	<select id="selectByIdx" resultType="com.koreait.test1.dto.Board" parameterType="int">
 		SELECT IDX, TITLE, WRITER, CONTENT, CREATED
 		  FROM BOARD
 		 WHERE IDX = #{idx}
 	</select>
 	
-	<update id="updateBoard">
+	<update id="updateBoard" parameterType="String">
 		UPDATE BOARD
 		   SET TITLE = #{param1},
 		       CONTENT = #{param2}
