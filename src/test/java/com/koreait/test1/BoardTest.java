@@ -1,9 +1,8 @@
 package com.koreait.test1;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -38,6 +37,7 @@ public class BoardTest {
 		Board board = new Board();
 		board = boardDAO.selectByIdx(9999);
 		System.out.println(board);
+		assertNotNull("테스트 데이터 조회 실패 ", board);
 	}
 
 	
@@ -51,7 +51,7 @@ public class BoardTest {
 		
 		int result = boardDAO.updateBoard(board);
 		System.out.println(result);
-		//assertEquals("수정성공", 1, result);
+		assertEquals("수정성공", 1, result);
 	}
 	
 	@Test
@@ -59,7 +59,7 @@ public class BoardTest {
 		BoardDAO boardDAO = sqlSession.getMapper(BoardDAO.class);
 		int result = boardDAO.deleteBoard(9999);
 		System.out.println(result);
-		//assertEquals("삭제성공", 1, result);
+		assertEquals("삭제성공", 1, result);
 		
 	}
 	
